@@ -1,15 +1,13 @@
-n = 5
-arr = [1,5,2,6,8]
+import sys
+n = int(input())
+arr = list(map(int, input().split()))
 
-max_sum = 0
+# print(n, arr)
+min_dist = sys.maxsize
 for i in range(n):
-    # 위치마다 확인
-    arr[i] *= 2
-
-    sum_diff = 0
-    for j in range(n-1):
-        sum_diff += (abs(arr[j+1] - arr[j]))
+    sum_dist = 0
+    for j in range(n):
+        sum_dist += abs(j-i) * arr[j]
     
-    max_sum = max(max_sum, sum_diff)
-    arr[i] //= 2
-print(max_sum)
+    min_dist = min(min_dist, sum_dist)
+print(min_dist)
