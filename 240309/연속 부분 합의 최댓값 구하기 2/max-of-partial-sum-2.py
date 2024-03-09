@@ -7,7 +7,7 @@ val = arr[0]
 for i in range(1, n):
     tmp = arr[i]
     if val < 0:
-        val = max(tmp, val)
+        val = max(tmp, val+tmp)
     else:
         val += tmp
 print(val)
