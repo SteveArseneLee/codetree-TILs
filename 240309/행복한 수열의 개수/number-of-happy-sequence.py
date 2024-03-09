@@ -8,10 +8,8 @@ def is_happy_sequence():
     # 주어진 seq가 행복한 수열인지 판단하는 함수입니다.
     consecutive_count, max_ccnt = 1, 1
     for i in range(1, n):
-        if seq[i - 1] == seq[i]:
-            consecutive_count += 1
-        else:
-            consecutive_count = 1
+        if seq[i - 1] == seq[i]: consecutive_count += 1
+        else: consecutive_count = 1
         
         max_ccnt = max(max_ccnt, consecutive_count)
     
