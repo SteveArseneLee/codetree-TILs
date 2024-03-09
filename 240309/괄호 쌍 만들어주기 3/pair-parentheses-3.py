@@ -15,6 +15,7 @@
 #         cnt += check(i)
 # print(cnt)
 
+# ========================
 # 변수 선언 및 입력
 string = input()
 n = len(string)
