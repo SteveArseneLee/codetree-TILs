@@ -1,9 +1,6 @@
 # 변수 선언 및 입력:
 n, m = tuple(map(int, input().split()))
-grid = [
-    list(map(int, input().split()))
-    for _ in range(n)
-]
+grid = [list(map(int, input().split())) for _ in range(n)]
 seq = [0 for _ in range(n)]
 
 
