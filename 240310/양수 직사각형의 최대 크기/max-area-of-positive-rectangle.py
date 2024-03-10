@@ -1,10 +1,7 @@
 # 변수 선언 및 입력:
 
 n, m = tuple(map(int, input().split()))
-grid = [
-    list(map(int, input().split()))
-    for _ in range(n)
-]
+grid = [list(map(int, input().split())) for _ in range(n)]
 
 
 # (x1, y1), (x2, y2)를 두 꼭지점으로 하는
@@ -28,6 +25,5 @@ for i in range(n):
         for k in range(i, n):
             for l in range(j, m):
                 if positive_rect(i, j, k, l):
-                    ans = max(ans, 
-                              (k - i + 1) * (l - j + 1))
+                    ans = max(ans, (k - i + 1) * (l - j + 1))
 print(ans)
