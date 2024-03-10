@@ -1,4 +1,3 @@
-n = int(input())
 import sys
 
 INT_MAX = sys.maxsize
