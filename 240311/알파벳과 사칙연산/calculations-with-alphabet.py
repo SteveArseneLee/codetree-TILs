@@ -1,45 +1,44 @@
-from itertools import product
-def calculate_expression(expression, values):
-    # 소문자 알파벳을 숫자로 대체
-    for letter, value in values.items():
-        expression = expression.replace(letter, str(value))
+import sys
 
-    # 모든 연산은 같은 우선순위를 가지므로 왼쪽에서 오른쪽으로 계산
-    elements = expression.split(' ')
-    result = int(elements[0])
-    for i in range(1, len(elements), 2):
-        operator = elements[i]
-        operand = int(elements[i + 1])
-        if operator == '+':
-            result += operand
-        elif operator == '-':
-            result -= operand
-        elif operator == '*':
-            result *= operand
-    return result
-def parse_expression(expression):
-    # 각 연산자와 피연산자 사이에 공백 추가
-    parsed_expression = ""
-    for char in expression:
-        if char in "+-*":
-            parsed_expression += f' {char} '
+INT_MIN = -sys.maxsize
+
+# 변수 선언 및 입력:
+n = 6
+expression = input()
+num = [0 for _ in range(n)]
+ans = INT_MIN
+
+
+def conv(idx):
+    return num[ord(expression[idx]) - ord('a')]
+
+
+def calc():
+    length = len(expression)
+    value = conv(0)
+    for i in range(2, length, 2):
+        if expression[i - 1] == '+':
+            value += conv(i)
+        elif expression[i - 1] == '-':
+            value -= conv(i)
         else:
-            parsed_expression += char
-    return parsed_expression
+            value *= conv(i)
+    return value
 
-def max_expression_result(expression):
-    # 식 파싱
-    parsed_expression = parse_expression(expression)
 
-    # 나머지 코드는 동일하게 유지
-    letters = set(filter(str.isalpha, parsed_expression))
-    max_result = float('-inf')
-    for values in product(range(1, 5), repeat=len(letters)):
-        letter_to_value = dict(zip(letters, values))
-        result = calculate_expression(parsed_expression, letter_to_value)
-        max_result = max(max_result, result)
-    return max_result
+# 'a'부터 'f'까지 순서대로
+# 0부터 5번째 index까지의 값을 
+# 1~4 중에 하나로 채웁니다.
+def find_max(cnt):
+    global ans
+    
+    if cnt == n:
+        ans = max(ans, calc())
+        return
+    
+    for i in range(1, 5):
+        num[cnt] = i
+        find_max(cnt + 1)
 
-# 사용자 입력 처리
-test = input()
-print(max_expression_result(test))
+find_max(0)
+print(ans)
