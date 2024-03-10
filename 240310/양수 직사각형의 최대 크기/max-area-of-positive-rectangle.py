@@ -1,31 +1,33 @@
-def max_positive_rectangle(grid):
-    n, m = len(grid), len(grid[0])
-    max_area = -1
+# 변수 선언 및 입력:
 
-    # 모든 가능한 직사각형에 대해
-    for start_row in range(n):
-        for start_col in range(m):
-            for end_row in range(start_row, n):
-                for end_col in range(start_col, m):
-                    all_positive = True
-                    # 직사각형 내 모든 값이 양수인지 확인
-                    for i in range(start_row, end_row + 1):
-                        for j in range(start_col, end_col + 1):
-                            if grid[i][j] <= 0:
-                                all_positive = False
-                                break
-                        if not all_positive:
-                            break
-                    
-                    # 양수인 경우, 최대 크기 업데이트
-                    if all_positive:
-                        area = (end_row - start_row + 1) * (end_col - start_col + 1)
-                        max_area = max(max_area, area)
-    
-    return max_area
+n, m = tuple(map(int, input().split()))
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
 
-# 입력 예시
-n, m = map(int, input().split())
-grid = [list(map(int, input().split())) for _ in range(n)]
 
-print(max_positive_rectangle(grid))
+# (x1, y1), (x2, y2)를 두 꼭지점으로 하는
+# 직사각형에 있는 값이 전부 양수인지 판단합니다.
+def positive_rect(x1, y1, x2, y2):
+    return all([
+        grid[i][j] > 0
+        for i in range(x1, x2 + 1)
+        for j in range(y1, y2 + 1)
+    ])
+
+
+ans = -1
+
+# 직사각형의 양쪽 두 꼭지점 (i, j), (k, l)
+# 를 정하여
+# 해당 직사각형안에 있는 값이 전부 양수일 때만
+# 크기를 갱신합니다.
+for i in range(n):
+    for j in range(m):
+        for k in range(i, n):
+            for l in range(j, m):
+                if positive_rect(i, j, k, l):
+                    ans = max(ans, 
+                              (k - i + 1) * (l - j + 1))
+print(ans)
