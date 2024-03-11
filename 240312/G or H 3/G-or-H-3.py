@@ -1,5 +1,4 @@
-# G와 H중 받은 알파벳의 팻말을 들고 있음
-# 사진의 크기는 k
+MAX_NUM = 10000
 n, k = map(int, input().split())
 pics = [list(input().split()) for _ in range(n)]
 
@@ -14,8 +13,8 @@ for i,j in pics:
         road[int(i)] = 1
     elif j == 'H':
         road[int(i)] = 2
-
+# print(road)
 ans = 0
-for i in range(min_value, max_value + 1 - k):
+for i in range(min_value, MAX_NUM + 1 - k):
     ans = max(ans, sum(road[i:i+k+1]))
 print(ans)
