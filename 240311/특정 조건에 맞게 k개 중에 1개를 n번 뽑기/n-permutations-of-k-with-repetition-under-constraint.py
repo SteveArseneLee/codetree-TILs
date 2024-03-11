@@ -1,5 +1,5 @@
 import sys
-n,m = map(int, input().split())
+n,m = map(int, sys.stdin.readline().split())
 selected = [0 for _ in range(m)]
 used = [0 for _ in range(n+1)]
 
