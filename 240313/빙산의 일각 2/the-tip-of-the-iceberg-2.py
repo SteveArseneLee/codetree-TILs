@@ -2,11 +2,7 @@ MAX_H = 1000
 
 # 변수 선언 및 입력
 n = int(input())
-
-h = [
-    int(input())
-    for _ in range(n)
-]
+h = [int(input()) for _ in range(n)]
 
 ans = 0
 
