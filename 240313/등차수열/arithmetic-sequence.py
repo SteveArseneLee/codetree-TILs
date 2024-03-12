@@ -1,17 +1,23 @@
+MAX_A = 100
+
+# 변수 선언 및 입력
 n = int(input())
-nums = sorted(list(map(int, input().split())))
+
+arr = list(map(int, input().split()))
+
 ans = 0
 
-def check(x,y,k):
-    return True if k-x == y-k else False
-for k in range(min(nums), max(nums) + 1):
-    # k랑 nums의 숫자 두개가 등차수열인 개수 세기
-    # print(k)
-    tmp = 0
+# 각 숫자에 대해 
+# 등차수열의 개수를 확인합니다.
+for x in range(1, MAX_A + 1):
+	# 모든 쌍을 만들어 등차수열의 개수를 확인합니다.
+    cnt = 0
+
     for i in range(n):
-        for j in range(i+1,n):
-            if check(nums[i],nums[j],k):
-                # print(nums[i],nums[j],k)
-                tmp += 1
-    ans = max(ans,tmp)
+        for j in range(i + 1, n):
+            if arr[i] + arr[j] == 2 * x:
+                cnt += 1
+
+    ans = max(ans, cnt)
+    
 print(ans)
