@@ -1,6 +1,6 @@
-import sys
+# import sys
 
-INT_MAX = sys.maxsize
+# INT_MAX = sys.maxsize
 
 # 변수 선언 및 입력
 t, a, b = tuple(map(int, input().split()))
@@ -12,8 +12,8 @@ ans = 0
 for i in range(a, b + 1):
     # 숫자 i에서부터 s로부터의 거리와
     # n으로부터의 거리를 확인합니다.
-    distance_s = INT_MAX
-    distance_n = INT_MAX
+    distance_s = 1000
+    distance_n = 1000
 
     for p, q in sn_data:
         q = int(q)
