@@ -1,44 +1,56 @@
-def reflect(direction, mirror):
-    if mirror == '/':
-        return (direction - 1) % 4
-    elif mirror == '\\':
-        return (direction + 1) % 4
+# 변수 선언 및 입력
+n = int(input())
+arr = [
+    input()
+    for _ in range(n)
+]
 
-def simulate(grid, start, direction):
-    n = len(grid)
-    x, y = start
-    count = 0
+start_num = int(input())
 
-    while 0 <= x < n and 0 <= y < n:
-        if grid[x][y] != ' ':
-            direction = reflect(direction, grid[x][y])
-            count += 1
-        x += dx[direction]
-        y += dy[direction]
 
-    return count
+# 주어진 숫자에 따라
+# 시작 위치와 방향을 구합니다.
+def initialize(num):
+    if num <= n:
+        return 0, num - 1, 0
+    elif num <= 2 * n:
+        return num - n - 1, n - 1, 1
+    elif num <= 3 * n:
+        return n - 1, n - (num - 2 * n), 2
+    else:
+        return n - (num - 3 * n), 0, 3
 
-N = int(input())
-grid = [list(input()) for _ in range(N)]
-K = int(input())
+    
+def in_range(x, y):
+    return 0 <= x and x < n and 0 <= y and y < n
+    
 
-# 방향: 북, 동, 남, 서
-dx, dy = [-1, 0, 1, 0], [0, 1, 0, -1]
+# (x, y)에서 시작하여 next_dir 방향으로
+# 이동한 이후의 위치를 반환합니다.
+def move(x, y, next_dir):
+    dxs, dys = [1, 0, -1, 0], [0, -1, 0, 1]
+    nx, ny = x + dxs[next_dir], y + dys[next_dir]
+    return nx, ny, next_dir
 
-# 시작 위치와 방향 설정
-if K <= N:
-    start = (0, K - 1)
-    direction = 2  # 남쪽
-elif K <= 2 * N:
-    start = (K - N - 1, N - 1)
-    direction = 3  # 서쪽
-elif K <= 3 * N:
-    start = (N - 1, 3 * N - K - 1)
-    direction = 0  # 북쪽
-else:
-    start = (4 * N - K - 1, 0)
-    direction = 1  # 동쪽
 
-# 시뮬레이션 실행
-result = simulate(grid, start, direction)
-print(result)
+def simulate(x, y, move_dir):
+    move_num = 0
+    while in_range(x, y):
+        # 0 <-> 1 / 2 <-> 3
+        if arr[x][y] == '/':
+            x, y, move_dir = move(x, y, move_dir ^ 1)
+        # 0 <-> 3 / 1 <-> 2
+        else:
+            x, y, move_dir = move(x, y, 3 - move_dir)
+        
+        move_num += 1
+    
+    return move_num
+    
+
+# 시작 위치와 방향을 구합니다.
+x, y, move_dir = initialize(start_num)
+# (x, y)에서 move_dir 방향으로 시작하여
+# 시뮬레이션을 진행합니다.
+move_num = simulate(x, y, move_dir)
+print(move_num)
