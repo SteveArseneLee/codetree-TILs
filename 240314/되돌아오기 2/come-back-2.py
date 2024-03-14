@@ -20,4 +20,4 @@ for i in test_case:
     if x==0 and y==0:
         print(elapsed_time)
         break
-if elapsed_time == 0: print(-1)
+if x!=0 and y!=0: print(-1)
