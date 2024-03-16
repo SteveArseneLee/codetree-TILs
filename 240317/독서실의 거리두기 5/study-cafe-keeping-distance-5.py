@@ -10,7 +10,7 @@ def min_dist():
         for j in range(i + 1, n):
             if seat[i] == '1' and seat[j] == '1':
                 dist = min(dist, j - i)
-    print(dist)
+    # print(dist)
     return dist
 
 
