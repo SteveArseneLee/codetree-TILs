@@ -1,16 +1,16 @@
-import sys
-si = sys.stdin.readline
-n, S = list(map(int, si().split()))
-a = list(map(int, si().split()))
-R, sum, ans = -1, 0, 0
-for L in range(n):
-    while R + 1 < n and sum < S:
-        R += 1
-        sum += a[R]
-    
-    if sum == S:
-        ans += 1
+n, k = map(int, input().split())
+arr = [0] + list(map(int, input().split()))
+prefix_sum = [0] * (n+1)
 
-    sum -= a[L]
+def get_sum(s,e):
+    return prefix_sum[e] - prefix_sum[s-1]
 
+for i in range(1,n+1):
+    prefix_sum[i] = prefix_sum[i-1] + arr[i]
+# print(prefix_sum)
+
+ans = 0
+for i in range(n+1):
+    for j in range(i,n+1):
+        if get_sum(i,j) == k: ans+=1
 print(ans)
