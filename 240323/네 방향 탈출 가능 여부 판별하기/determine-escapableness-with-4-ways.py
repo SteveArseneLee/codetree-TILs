@@ -21,4 +21,4 @@ q.append((0,0))
 visited[0][0] = True
 
 bfs()
-print(-1) if not visited[n-1][m-1] else print(0)
+print(0) if not visited[n-1][m-1] else print(1)
