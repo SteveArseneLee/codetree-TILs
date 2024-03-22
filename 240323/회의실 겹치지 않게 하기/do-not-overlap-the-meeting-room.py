@@ -14,7 +14,7 @@ def schedule_meetings(meetings):
     return count
 
 # 입력
-n = int(input("회의의 개수를 입력하세요: "))
+n = int(input())
 meetings = []
 for _ in range(n):
     start, end = map(int, input().split())
