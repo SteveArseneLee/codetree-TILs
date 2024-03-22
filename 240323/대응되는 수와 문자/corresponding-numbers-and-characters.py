@@ -5,6 +5,6 @@ for _ in range(m):
     # print(tmp)
     if tmp.isalpha():
         for i in range(n):
-            if arr[i-1] == tmp:
-                print(i)
+            if arr[i] == tmp:
+                print(i+1)
     else: print(arr[int(tmp)-1])
