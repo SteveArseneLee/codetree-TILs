@@ -1,27 +1,10 @@
-def schedule_meetings(meetings):
-    # 회의를 종료 시간 기준으로 정렬
-    meetings.sort(key=lambda x: x[1])
-    
-    count = 0
-    end_time = -1
-    
-    for start, end in meetings:
-        if start >= end_time:
-            end_time = end
-        else:
-            count += 1
-
-    return count
-
-# 입력
 n = int(input())
-meetings = []
-for _ in range(n):
-    start, end = map(int, input().split())
-    meetings.append((start, end))
+meetings = sorted([list(map(int, input().split())) for _ in range(n)], key=lambda x:x[1])
 
-# 최소 취소 회의 수 계산
-min_cancellations = schedule_meetings(meetings)
-
-# 출력
-print(min_cancellations)
+last_e, max_cnt = -1, 0
+for s,e in meetings:
+    # 이전 회의와 겹치지 않으면 해당 회의 선택해줌
+    if last_e <= s:
+        last_e = e
+        max_cnt += 1
+print(n-max_cnt)
