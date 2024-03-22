@@ -26,5 +26,13 @@ for _ in range(k):
     nx, ny= x-1, y-1
     q.append((nx,ny))
     bfs(nx,ny)
+    # cnt += 1
     # print(cnt)
 print(cnt)
+# ans = sum([
+#     1
+#     for i in range(n)
+#     for j in range(n)
+#     if visited[i][j]
+# ])
+# print(ans)
