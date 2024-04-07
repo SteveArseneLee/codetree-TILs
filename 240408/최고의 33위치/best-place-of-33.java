@@ -1,10 +1,6 @@
-public class Main {
-    public static void main(String[] args) {
-     
-    }
 import java.util.Scanner;
 
-class Main{
+public class Main{
     public static final int MAX_N = 20;
     public static int n;
     public static int[][] grid = new int[MAX_N][MAX_N];
