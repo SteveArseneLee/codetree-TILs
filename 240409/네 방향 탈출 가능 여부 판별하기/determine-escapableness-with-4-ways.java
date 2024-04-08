@@ -69,6 +69,7 @@ public class Main{
         BFS();
 
         int answer = visited[n - 1][m - 1] ? 1 : 0;
+        // bw.write(answer);
         bw.write(answer + "\n");
         bw.flush();
         br.close();
